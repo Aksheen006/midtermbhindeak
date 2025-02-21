@@ -29,4 +29,12 @@ public class StoreController {
         model.addAttribute("products", products);
         return "index";
     }
+    @GetMapping("/addProduct")
+    public String addProductPage(Model model) {
+        List<Store> stores = storeRepository.findAll();
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("stores", stores);
+        model.addAttribute("products", products);
+        return "addProduct";
+    }
 }
