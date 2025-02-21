@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+<!-- Header Fragment -->
+<header>
+    <div th:replace="fragments/header :: header"></div>
+</header>
+
+<main>
+    <h2>Add Product</h2>
+
+    <!-- Store Selection -->
+    <label for="store">Select Store:</label>
+    <select id="store" name="store">
+        <option th:each="store : ${stores}" th:value="${store.id}" th:text="${store.name}"></option>
+    </select>
+
+    <!-- Product Table -->
+    <h3>Existing Products</h3>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Add Product Form -->
+    <h3>Add New Product</h3>
+    <form action="/addProduct" method="post">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required>
+
+        <button type="submit">Add Product</button>
+    </form>
+</main>
+
+<!-- Footer.html Fragment -->
+<footer>
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>
